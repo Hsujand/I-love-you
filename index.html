@@ -160,33 +160,23 @@ text-shadow:
 0 0 10px #ff6fa8;
 
 }
-
 p{
+    max-width:700px;
+    margin:10px auto;
+    padding:18px;
+    line-height:1.8;
+    font-size:1.1rem;
 
-max-width:700px;
+    background:none;
+    border:none;
+    box-shadow:none;
+    backdrop-filter:none;
 
-margin:10px auto;
+    color:#ffffff;
+    text-shadow:
+        1px 1px 3px rgba(0,0,0,.8);
 
-padding:18px;
-
-line-height:1.8;
-
-font-size:1.1rem;
-
-background:none;
-
-backdrop-filter:none;
-
-border-radius:0;
-
-box-shadow:none;
-
-color:#ffffff;
-
-text-shadow:
-
-0 0 2px rgba(0,0,0,.8);
-
+    font-weight:500;
 }
 
 button{
@@ -275,7 +265,7 @@ align-items:center;
 
 flex-direction:column;
 
-z-index:99999;
+z-index:999999;
 
 }
 
@@ -861,6 +851,8 @@ document.getElementById("page"+number).classList.add("active");
 
 }
 
+setTimeout(function(){
+
 for(let i=0;i<120;i++){
 
 let star=document.createElement("div");
@@ -882,6 +874,8 @@ star.style.animationDuration=(3+Math.random()*5)+"s";
 document.body.appendChild(star);
 
 }
+
+},3000);
 
 function floating(symbol,className){
 
@@ -1291,41 +1285,7 @@ setInterval(shootingStar,5000);
 
 /* ---------- BACKGROUND CHANGE ---------- */
 
-const gradients=[
 
-"linear-gradient(180deg,#020111,#0b1635,#2a0845,#4b1248)",
-
-"linear-gradient(180deg,#06142e,#1c1f4a,#402060,#6b2d5c)",
-
-"linear-gradient(180deg,#05000d,#240046,#5a189a,#7b2cbf)",
-
-"linear-gradient(180deg,#001219,#005f73,#0a9396,#3d405b)",
-
-"linear-gradient(180deg,#03071e,#370617,#6a040f,#9d0208)"
-
-];
-
-let currentGradient=0;
-
-setInterval(function(){
-
-document.body.style.background=
-
-gradients[currentGradient];
-
-document.body.style.backgroundSize=
-
-"500% 500%";
-
-currentGradient++;
-
-if(currentGradient>=gradients.length){
-
-currentGradient=0;
-
-}
-
-},8000);
 
 </script>
  </body>
