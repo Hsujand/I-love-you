@@ -526,6 +526,29 @@ text-shadow:
 width:0;
 
 }
+ @keyframes noShake{
+
+0%{
+transform:translateX(0px);
+}
+
+25%{
+transform:translateX(-6px);
+}
+
+50%{
+transform:translateX(6px);
+}
+
+75%{
+transform:translateX(-6px);
+}
+
+100%{
+transform:translateX(0px);
+}
+
+ }
 
 </style>
 
@@ -1015,17 +1038,110 @@ let noCount=0;
 
 function moveButton(button){
 
-let text=document.getElementById("floatingText");
+let count=(button.id=="no")
+?noCount1
+:noCount2;
 
-text.innerHTML=noMessages[noCount%noMessages.length];
+let text=document.getElementById(
+"floatingText"
+);
+
+text.innerHTML=
+noMessages[
+count%noMessages.length
+];
 
 text.style.opacity="1";
 
-setTimeout(function(){
+clearTimeout(window.messageTimer);
+
+window.messageTimer=setTimeout(function(){
 
 text.style.opacity="0";
 
-},1700);
+},2800);
+
+button.style.position="fixed";
+
+button.style.transition=".25s";
+
+button.style.animation="noShake .2s";
+
+setTimeout(function(){
+
+button.style.animation="";
+
+},200);
+
+let x=Math.max(
+20,
+Math.random()*(window.innerWidth-180)
+);
+
+let y=Math.max(
+120,
+Math.random()*(window.innerHeight-180)
+);
+
+setTimeout(function(){
+
+button.style.left=x+"px";
+
+button.style.top=y+"px";
+
+},200);
+
+if(button.id=="no"){
+
+let size=Math.min(
+2.2,
+1+(noCount1*0.12)
+);
+
+yes.style.transform=
+"scale("+size+")";
+
+yes.innerHTML=
+yesMessages[
+Math.min(
+noCount1,
+yesMessages.length-1
+)
+];
+
+yes.style.boxShadow=
+"0 0 40px hotpink";
+
+noCount1++;
+
+}
+
+else{
+
+let size=Math.min(
+2.2,
+1+(noCount2*0.12)
+);
+
+yes2.style.transform=
+"scale("+size+")";
+
+yes2.innerHTML=
+yesMessages[
+Math.min(
+noCount2,
+yesMessages.length-1
+)
+];
+
+yes2.style.boxShadow=
+"0 0 40px hotpink";
+
+noCount2++;
+
+}
+
+}
 
 button.style.position="fixed";
 
@@ -1098,6 +1214,14 @@ yes.onclick=function(){
 floating("💖","sparkle");
 
 floating("❤️","heart");
+
+yes2.style.transform="scale(1)";
+
+yes2.style.boxShadow="0 0 20px white";
+
+yes2.innerHTML="YES 🌹";
+
+noCount2=0;
 
 showPage(5);
 
