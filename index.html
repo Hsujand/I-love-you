@@ -403,7 +403,33 @@ pointer-events:none;
 
 .star{
 
-animation:twinkle 2s infinite alternate;
+animation:
+
+twinkle 2s infinite alternate,
+
+starFloat 12s linear infinite;
+
+}
+
+@keyframes starFloat{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
 
 }
 
@@ -828,7 +854,7 @@ setTimeout(function(){
 
 document.getElementById("loading").style.display="none";
 
-},2500);
+},3000);
 
 function showPage(number){
 
@@ -840,11 +866,7 @@ page.classList.remove("active");
 
 document.getElementById("page"+number).classList.add("active");
 
-window.scrollTo(0,0);
-
 }
-
-/* ---------- STARS ---------- */
 
 for(let i=0;i<120;i++){
 
@@ -854,61 +876,19 @@ star.className="star";
 
 star.innerHTML=Math.random()>0.5?"✦":"✧";
 
-star.style.position="fixed";
-
 star.style.left=Math.random()*100+"vw";
 
 star.style.top=Math.random()*100+"vh";
 
-star.style.fontSize=(4+Math.random()*14)+"px";
-
 star.style.opacity=Math.random();
 
-document.body.appendChild(star);
+star.style.fontSize=(5+Math.random()*18)+"px";
 
-}
-
-/* ---------- SHOOTING STAR ---------- */
-
-function shootingStar(){
-
-let star=document.createElement("div");
-
-star.innerHTML="☄️";
-
-star.style.position="fixed";
-
-star.style.left=Math.random()*window.innerWidth+"px";
-
-star.style.top="-50px";
-
-star.style.fontSize="22px";
-
-star.style.transition="3s linear";
-
-star.style.zIndex="2";
+star.style.animationDuration=(3+Math.random()*5)+"s";
 
 document.body.appendChild(star);
 
-setTimeout(function(){
-
-star.style.transform="translate(-300px,800px)";
-
-star.style.opacity="0";
-
-},50);
-
-setTimeout(function(){
-
-star.remove();
-
-},3000);
-
 }
-
-setInterval(shootingStar,5000);
-
-/* ---------- FLOATING OBJECTS ---------- */
 
 function floating(symbol,className){
 
@@ -920,9 +900,9 @@ obj.innerHTML=symbol;
 
 obj.style.left=Math.random()*100+"vw";
 
-obj.style.fontSize=(15+Math.random()*25)+"px";
+obj.style.fontSize=(18+Math.random()*25)+"px";
 
-obj.style.animationDuration=(4+Math.random()*4)+"s";
+obj.style.animationDuration=(5+Math.random()*4)+"s";
 
 document.body.appendChild(obj);
 
@@ -930,7 +910,7 @@ setTimeout(function(){
 
 obj.remove();
 
-},8000);
+},9000);
 
 }
 
@@ -944,25 +924,13 @@ setInterval(function(){
 
 floating("✨","sparkle");
 
-},1000);
+},900);
 
 setInterval(function(){
 
 floating("🎈","balloon");
 
-},2000);
-
-/* ---------- BUTTONS ---------- */
-
-const yes=document.getElementById("yes");
-
-const no=document.getElementById("no");
-
-const yes2=document.getElementById("yes2");
-
-const no2=document.getElementById("no2");
-
-/* ---------- NO TEXTS ---------- */
+},1800);
 
 const noMessages=[
 
@@ -976,35 +944,35 @@ const noMessages=[
 
 "🌹 Maybe one more thought?",
 
-"✨ The YES button looks happier.",
+"✨ The YES button is smiling.",
 
-"💕 I made this little surprise just for you.",
+"💕 I believe this friendship is special.",
 
-"🥰 The stars are waiting for a YES.",
+"🥰 You know you want to press YES.",
 
-"🌸 Please don't make me run forever.",
+"🌸 Don't leave me hanging.",
 
-"💞 Friendship deserves a chance.",
+"💞 The YES button looks lonely.",
 
-"🥹 One tiny click?",
+"🥹 Please don't run away.",
 
-"❤️ Come on...",
+"❤️ I will keep running until you smile.",
 
-"✨ Don't break my little coded heart.",
+"🌟 Maybe destiny chose YES.",
 
-"💕 Maybe destiny chose YES.",
+"💖 Just one tiny click.",
 
-"🌹 I believe in us.",
+"🥺 You are breaking my code.",
 
-"🥰 Still thinking?",
+"✨ I made all this just for you.",
 
-"❤️ Last chance...",
+"💕 Don't make the stars sad.",
 
-"💖 Pretty please?",
+"🌹 My heart says YES already.",
 
-"🌟 The YES button is lonely.",
+"🥰 Come on...",
 
-"💕 Okay... I'll keep running."
+"❤️ One last chance?"
 
 ];
 
@@ -1032,9 +1000,17 @@ const yesMessages=[
 
 ];
 
-let noCount=0;
+let noCount1=0;
 
-/* ---------- ESCAPE ---------- */
+let noCount2=0;
+
+const yes=document.getElementById("yes");
+
+const no=document.getElementById("no");
+
+const yes2=document.getElementById("yes2");
+
+const no2=document.getElementById("no2");
 
 function moveButton(button){
 
@@ -1042,12 +1018,9 @@ let count=(button.id=="no")
 ?noCount1
 :noCount2;
 
-let text=document.getElementById(
-"floatingText"
-);
+let text=document.getElementById("floatingText");
 
-text.innerHTML=
-noMessages[
+text.innerHTML=noMessages[
 count%noMessages.length
 ];
 
@@ -1143,55 +1116,22 @@ noCount2++;
 
 }
 
-button.style.position="fixed";
-
-button.style.zIndex="9999";
-
-let x=Math.random()*(window.innerWidth-170);
-
-let y=Math.random()*(window.innerHeight-100);
-
-button.style.left=x+"px";
-
-button.style.top=y+"px";
-
-let size=Math.min(2.2,1+(noCount*0.12));
-
-yes.style.transform="scale("+size+")";
-
-yes2.style.transform="scale("+size+")";
-
-yes.innerHTML=yesMessages[Math.min(noCount,yesMessages.length-1)];
-
-yes2.innerHTML=yesMessages[Math.min(noCount,yesMessages.length-1)];
-
-yes.style.boxShadow="0 0 40px hotpink";
-
-yes2.style.boxShadow="0 0 40px hotpink";
-
-noCount++;
-
-}
-
-function escape(button,e){
+function noAction(button,e){
 
 if(e){
 
 e.preventDefault();
-
-e.stopPropagation();
 
 }
 
 moveButton(button);
 
 }
-
-["mouseover","touchstart","click"].forEach(function(event){
+ ["mouseover","touchstart","click"].forEach(function(event){
 
 no.addEventListener(event,function(e){
 
-escape(no,e);
+noAction(no,e);
 
 });
 
@@ -1201,13 +1141,13 @@ escape(no,e);
 
 no2.addEventListener(event,function(e){
 
-escape(no2,e);
+noAction(no2,e);
 
 });
 
 });
 
-/* ---------- YES ---------- */
+/* ---------- FIRST YES ---------- */
 
 yes.onclick=function(){
 
@@ -1215,43 +1155,170 @@ floating("💖","sparkle");
 
 floating("❤️","heart");
 
+noCount2=0;
+
 yes2.style.transform="scale(1)";
 
-yes2.style.boxShadow="0 0 20px white";
+yes2.style.boxShadow="0 0 20px rgba(255,105,180,.6)";
 
 yes2.innerHTML="YES 🌹";
 
-noCount2=0;
+yes2.style.left="";
+
+yes2.style.top="";
+
+yes2.style.position="relative";
 
 showPage(5);
 
-}
+};
+
+/* ---------- SECOND YES ---------- */
 
 yes2.onclick=function(){
 
 showPage(7);
 
-for(let i=0;i<700;i++){
+/* Fireworks */
+
+for(let i=0;i<500;i++){
 
 setTimeout(function(){
 
-floating(i%2==0?"🎆":"💖","sparkle");
+floating("🎆","sparkle");
 
-},i*8);
+},i*10);
+
+}
+
+/* Hearts */
+
+for(let i=0;i<300;i++){
+
+setTimeout(function(){
+
+floating("❤️","heart");
+
+},i*15);
 
 }
 
+/* Balloons */
+
+for(let i=0;i<150;i++){
+
+setTimeout(function(){
+
+floating("🎈","balloon");
+
+},i*30);
+
 }
+
+/* Extra Sparkles */
+
+for(let i=0;i<250;i++){
+
+setTimeout(function(){
+
+floating("✨","sparkle");
+
+},i*18);
+
+}
+
+};
 
 /* ---------- MUSIC ---------- */
 
 document.querySelector(".musicBtn").onclick=function(){
 
-alert("🎵 Add your favorite music later.");
+alert(
+"🎵 You can later replace this with your own music."
+);
+
+};
+
+/* ---------- SHOOTING STARS ---------- */
+
+function shootingStar(){
+
+let star=document.createElement("div");
+
+star.innerHTML="☄️";
+
+star.style.position="fixed";
+
+star.style.left=Math.random()*100+"vw";
+
+star.style.top="-50px";
+
+star.style.fontSize="25px";
+
+star.style.pointerEvents="none";
+
+star.style.transition="3s linear";
+
+document.body.appendChild(star);
+
+setTimeout(function(){
+
+star.style.transform=
+"translate(-300px,900px)";
+
+star.style.opacity="0";
+
+},50);
+
+setTimeout(function(){
+
+star.remove();
+
+},3000);
 
 }
 
- </script>
+setInterval(shootingStar,5000);
+
+/* ---------- BACKGROUND CHANGE ---------- */
+
+const gradients=[
+
+"linear-gradient(180deg,#020111,#0b1635,#2a0845,#4b1248)",
+
+"linear-gradient(180deg,#06142e,#1c1f4a,#402060,#6b2d5c)",
+
+"linear-gradient(180deg,#05000d,#240046,#5a189a,#7b2cbf)",
+
+"linear-gradient(180deg,#001219,#005f73,#0a9396,#3d405b)",
+
+"linear-gradient(180deg,#03071e,#370617,#6a040f,#9d0208)"
+
+];
+
+let currentGradient=0;
+
+setInterval(function(){
+
+document.body.style.background=
+
+gradients[currentGradient];
+
+document.body.style.backgroundSize=
+
+"500% 500%";
+
+currentGradient++;
+
+if(currentGradient>=gradients.length){
+
+currentGradient=0;
+
+}
+
+},8000);
+
+</script>
  </body>
 
 </html>
