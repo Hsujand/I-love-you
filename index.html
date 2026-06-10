@@ -853,12 +853,9 @@ always find its way home. ✨
 
 </div>
 <script>
-
-setTimeout(function(){
+ console.log("Script started");
 
 document.getElementById("loading").style.display="none";
-
-},3000);
 
 function showPage(number){
 
@@ -1183,8 +1180,6 @@ yes2.onclick=function(){
 
 showPage(7);
 
-/* Fireworks */
-
 for(let i=0;i<500;i++){
 
 setTimeout(function(){
@@ -1194,8 +1189,6 @@ floating("🎆","sparkle");
 },i*10);
 
 }
-
-/* Hearts */
 
 for(let i=0;i<300;i++){
 
@@ -1207,8 +1200,6 @@ floating("❤️","heart");
 
 }
 
-/* Balloons */
-
 for(let i=0;i<150;i++){
 
 setTimeout(function(){
@@ -1218,8 +1209,6 @@ floating("🎈","balloon");
 },i*30);
 
 }
-
-/* Extra Sparkles */
 
 for(let i=0;i<250;i++){
 
@@ -1232,7 +1221,6 @@ floating("✨","sparkle");
 }
 
 };
-
 /* ---------- MUSIC ---------- */
 
 document.querySelector(".musicBtn").onclick=function(){
