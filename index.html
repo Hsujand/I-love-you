@@ -135,15 +135,13 @@ font-size:3rem;
 
 margin-bottom:20px;
 
-color:#fff5fa;
+color:#ffd6ea;
 
 text-shadow:
 
-0 0 10px #ff9ecb,
+0 0 5px #ff9ecb,
 
-0 0 25px #ff6fa8,
-
-0 0 45px #ff3d88;
+0 0 12px #ff6fa8;
 
 }
 
@@ -153,13 +151,13 @@ font-size:2.2rem;
 
 margin-bottom:20px;
 
-color:#fff0f6;
+color:#ffdff0;
 
 text-shadow:
 
-0 0 8px #ff9ecb,
+0 0 4px #ff9ecb,
 
-0 0 20px #ff6fa8;
+0 0 10px #ff6fa8;
 
 }
 
@@ -183,11 +181,11 @@ border-radius:0;
 
 box-shadow:none;
 
-color:#fff7fc;
+color:#ffffff;
 
 text-shadow:
 
-0 0 8px rgba(255,180,220,.5);
+0 0 2px rgba(0,0,0,.8);
 
 }
 
@@ -218,9 +216,9 @@ transform:scale(1.08);
 #yes,
 #yes2{
 
-background:white;
+background:linear-gradient(45deg,#ff4f9a,#ff7eb6);
 
-color:#ff3d88;
+color:white;
 
 box-shadow:
 0 0 20px white;
@@ -465,39 +463,33 @@ animation:floatUp linear forwards;
 
 @keyframes floatUp{
 
-to{
+0%{
+transform:translate3d(0,0,0);
+opacity:1;
+}
 
-transform:translateY(-120vh);
-
+100%{
+transform:translate3d(0,-120vh,0);
 opacity:0;
-
 }
 
 }
 
 .glowText{
-
-animation:glow 2s infinite alternate;
-
+    animation:softGlow 2s infinite alternate;
 }
 
-@keyframes glow{
+@keyframes softGlow{
+    from{
+        text-shadow:
+        0 0 6px #ffb6d9;
+    }
 
-from{
-
-text-shadow:0 0 10px pink;
-
-}
-
-to{
-
-text-shadow:
-0 0 20px pink,
-0 0 40px hotpink,
-0 0 60px deeppink;
-
-}
-
+    to{
+        text-shadow:
+        0 0 12px #ff8fc5,
+        0 0 20px #ff5ea8;
+    }
 }
 
 #floatingText{
@@ -904,6 +896,31 @@ obj.style.left=Math.random()*100+"vw";
 obj.style.fontSize=(18+Math.random()*25)+"px";
 
 obj.style.animationDuration=(5+Math.random()*4)+"s";
+ function floating(symbol,className){
+
+let obj=document.createElement("div");
+
+obj.className=className;
+
+obj.innerHTML=symbol;
+
+obj.style.left=Math.random()*100+"vw";
+
+obj.style.fontSize=(18+Math.random()*25)+"px";
+
+obj.style.animationDuration=(5+Math.random()*4)+"s";
+
+obj.style.willChange="transform, opacity";
+
+document.body.appendChild(obj);
+
+setTimeout(function(){
+
+obj.remove();
+
+},9000);
+
+ }
 
 document.body.appendChild(obj);
 
@@ -1180,7 +1197,7 @@ yes2.onclick=function(){
 
 showPage(7);
 
-for(let i=0;i<500;i++){
+for(let i=0;i<120;i++){
 
 setTimeout(function(){
 
@@ -1190,7 +1207,7 @@ floating("🎆","sparkle");
 
 }
 
-for(let i=0;i<300;i++){
+for(let i=0;i<80;i++){
 
 setTimeout(function(){
 
@@ -1200,7 +1217,7 @@ floating("❤️","heart");
 
 }
 
-for(let i=0;i<150;i++){
+for(let i=0;i<80;i++){
 
 setTimeout(function(){
 
@@ -1210,7 +1227,7 @@ floating("🎈","balloon");
 
 }
 
-for(let i=0;i<250;i++){
+for(let i=0;i<50;i++){
 
 setTimeout(function(){
 
