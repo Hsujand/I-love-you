@@ -62,12 +62,15 @@ h2{
 }
 
 p{
-    max-width:750px;
-    margin:18px auto;
-    padding:0 15px;
-    line-height:1.9;
-    font-size:1.15rem;
-    text-shadow:0 0 10px rgba(255,255,255,.15);
+
+background:rgba(0,0,0,.25);
+
+backdrop-filter:blur(4px);
+
+border-radius:20px;
+
+padding:15px;
+
 }
 
 button{
@@ -280,6 +283,50 @@ button:hover{
 ::-webkit-scrollbar{
 
     width:0;
+
+}
+ .page{
+
+background:rgba(0,0,0,.08);
+
+backdrop-filter:blur(2px);
+
+ }
+ #floatingText{
+
+position:fixed;
+
+top:12%;
+
+left:50%;
+
+transform:translateX(-50%);
+
+background:rgba(0,0,0,.75);
+
+padding:15px 25px;
+
+border-radius:40px;
+
+font-size:22px;
+
+opacity:0;
+
+transition:.4s;
+
+z-index:99999;
+
+box-shadow:0 0 20px pink;
+
+text-align:center;
+
+max-width:90%;
+
+}
+
+#yes,#yes2{
+
+transition:.3s;
 
 }
   </style>
@@ -568,7 +615,9 @@ let star=document.createElement("div");
 
 star.className="star";
 
-star.innerHTML="✦";
+ star.innerHTML=Math.random()>0.5?"✦":"✧";
+ 
+ star.style.opacity=Math.random();
 
 star.style.left=Math.random()*100+"vw";
 
@@ -622,13 +671,107 @@ floating("🎈","balloon");
 
 },1800);
 
+const noMessages=[
+
+"🥺 Are you sure?",
+
+"💖 Think again...",
+
+"🥹 Don't do this baby...",
+
+"❤️ My little heart is scared.",
+
+"🌹 Maybe one more thought?",
+
+"✨ The YES button is smiling.",
+
+"💕 I believe this friendship is special.",
+
+"🥰 You know you want to press YES.",
+
+"🌸 Don't leave me hanging.",
+
+"💞 The YES button looks lonely.",
+
+"🥹 Please don't run away.",
+
+"❤️ I will keep running until you smile.",
+
+"🌟 Maybe destiny chose YES.",
+
+"💖 Just one tiny click.",
+
+"🥺 You are breaking my code.",
+
+"✨ I made all this just for you.",
+
+"💕 Don't make the stars sad.",
+
+"🌹 My heart says YES already.",
+
+"🥰 Come on...",
+
+"❤️ One last chance?"
+
+];
+
+const yesMessages=[
+
+"YES ❤️",
+
+"YES ❤️❤️",
+
+"YES 💖",
+
+"YES 🌹",
+
+"YES 🥰",
+
+"YES 💞",
+
+"YES ✨",
+
+"YES 🌸",
+
+"YES 💕",
+
+"YES ❤️ Forever"
+
+];
+
+let noCount=0;
+
 function moveButton(button){
+
+let message=document.getElementById("floatingText");
+
+message.innerHTML=noMessages[noCount % noMessages.length];
+
+message.style.opacity=1;
+
+setTimeout(function(){
+
+message.style.opacity=0;
+
+},1700);
 
 button.style.position="fixed";
 
 button.style.left=Math.random()*(window.innerWidth-140)+"px";
 
 button.style.top=Math.random()*(window.innerHeight-80)+"px";
+
+let size=1+(noCount*0.05);
+
+yes.style.transform="scale("+size+")";
+
+yes2.style.transform="scale("+size+")";
+
+yes.innerHTML=yesMessages[Math.min(noCount,yesMessages.length-1)];
+
+yes2.innerHTML=yesMessages[Math.min(noCount,yesMessages.length-1)];
+
+noCount++;
 
 }
 
@@ -639,36 +782,59 @@ const no=document.getElementById("no");
 const yes2=document.getElementById("yes2");
 
 const no2=document.getElementById("no2");
+function noAction(button,e){
+
+if(e){
+
+e.preventDefault();
+
+}
+
+moveButton(button);
+
+}
 
 no.addEventListener("mouseover",function(){
 
-moveButton(no);
+noAction(no);
 
 });
 
 no.addEventListener("touchstart",function(e){
 
-e.preventDefault();
+noAction(no,e);
 
-moveButton(no);
+});
+
+no.addEventListener("click",function(e){
+
+noAction(no,e);
 
 });
 
 no2.addEventListener("mouseover",function(){
 
-moveButton(no2);
+noAction(no2);
 
 });
 
 no2.addEventListener("touchstart",function(e){
 
-e.preventDefault();
+noAction(no2,e);
 
-moveButton(no2);
+});
+
+no2.addEventListener("click",function(e){
+
+noAction(no2,e);
 
 });
 
 yes.onclick=function(){
+
+floating("💖","sparkle");
+
+floating("❤️","heart");
 
 showPage(5);
 
@@ -678,25 +844,49 @@ yes2.onclick=function(){
 
 showPage(7);
 
-for(let i=0;i<250;i++){
+for(let i=0;i<350;i++){
 
 setTimeout(function(){
 
 floating(i%2==0?"🎆":"💖","sparkle");
 
-},i*20);
+},i*15);
 
 }
 
 }
-
 document.querySelector(".musicBtn").onclick=function(){
 
 alert("🎵 You can later replace this with your own music file.");
 
 }
+ const gradients=[
+
+"linear-gradient(180deg,#020111,#0b1635,#2a0845,#4b1248)",
+
+"linear-gradient(180deg,#06142e,#1c1f4a,#402060,#6b2d5c)",
+
+"linear-gradient(180deg,#05000d,#240046,#5a189a,#7b2cbf)",
+
+"linear-gradient(180deg,#001219,#005f73,#0a9396,#3d405b)",
+
+"linear-gradient(180deg,#03071e,#370617,#6a040f,#9d0208)"
+
+];
+
+window.addEventListener("scroll",function(){
+
+let index=Math.floor(
+(window.scrollY/300)%gradients.length
+);
+
+document.body.style.background=
+gradients[index];
+
+});
 
 </script>
+ <div id="floatingText"></div>
 
 </body>
 
