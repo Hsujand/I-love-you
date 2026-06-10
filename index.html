@@ -11,288 +11,446 @@ content="width=device-width, initial-scale=1.0">
 <title>A Little Journey</title>
 
 <style>
-  *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+
 }
 
 html{
-    scroll-behavior:smooth;
+
+scroll-behavior:smooth;
+
 }
 
 body{
-    background:linear-gradient(180deg,#060010,#170028,#2b003f,#43004f);
-    color:white;
-    overflow:hidden;
+
+background:linear-gradient(
+-45deg,
+#020111,
+#0b1635,
+#2a0845,
+#4b1248,
+#000814
+);
+
+background-size:500% 500%;
+
+animation:galaxy 20s ease infinite;
+
+overflow:hidden;
+
+color:white;
+
+}
+
+@keyframes galaxy{
+
+0%{
+background-position:0% 50%;
+}
+
+50%{
+background-position:100% 50%;
+}
+
+100%{
+background-position:0% 50%;
+}
+
 }
 
 .page{
-    position:absolute;
-    width:100%;
-    height:100vh;
-    left:0;
-    top:0;
-    display:none;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:30px;
-    overflow-y:auto;
+
+position:absolute;
+
+width:100%;
+
+height:100vh;
+
+left:0;
+
+top:0;
+
+display:none;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+padding:30px;
+
+overflow-y:auto;
+
+animation:fade .8s;
+
 }
 
 .page.active{
-    display:flex;
+
+display:flex;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:scale(.97);
+
+}
+
+to{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
 }
 
 h1{
-    font-size:3rem;
-    margin-bottom:20px;
-    text-shadow:0 0 10px pink,
-                0 0 20px pink,
-                0 0 35px deeppink;
+
+font-size:3rem;
+
+margin-bottom:20px;
+
+text-shadow:
+0 0 10px pink,
+0 0 20px pink,
+0 0 40px hotpink;
+
 }
 
 h2{
-    font-size:2.2rem;
-    margin-bottom:20px;
-    text-shadow:0 0 10px pink;
+
+font-size:2.2rem;
+
+margin-bottom:20px;
+
+text-shadow:
+0 0 10px pink;
+
 }
 
 p{
 
-background:rgba(0,0,0,.25);
+max-width:700px;
 
-backdrop-filter:blur(4px);
+margin:10px auto;
+
+padding:18px;
+
+line-height:1.8;
+
+font-size:1.1rem;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(8px);
 
 border-radius:20px;
 
-padding:15px;
+box-shadow:
+0 0 20px rgba(255,255,255,.05);
 
 }
 
 button{
-    padding:15px 30px;
-    margin:10px;
-    border:none;
-    border-radius:50px;
-    font-size:20px;
-    cursor:pointer;
-    transition:.3s;
+
+padding:16px 35px;
+
+margin:12px;
+
+font-size:20px;
+
+border:none;
+
+border-radius:50px;
+
+cursor:pointer;
+
+transition:.3s;
+
 }
 
 button:hover{
-    transform:scale(1.05);
+
+transform:scale(1.08);
+
 }
 
 #yes,
 #yes2{
-    background:white;
-    color:#ff3d88;
-    box-shadow:0 0 20px rgba(255,255,255,.4);
+
+background:white;
+
+color:#ff3d88;
+
+box-shadow:
+0 0 20px white;
+
+transition:.3s;
+
+animation:yesGlow 2s infinite alternate;
+
+}
+
+@keyframes yesGlow{
+
+from{
+
+box-shadow:
+0 0 10px pink;
+
+}
+
+to{
+
+box-shadow:
+0 0 25px pink,
+0 0 50px hotpink;
+
+}
+
 }
 
 #no,
 #no2{
-    background:#ff3d88;
-    color:white;
-    position:relative;
+
+background:#ff3d88;
+
+color:white;
+
+position:relative;
+
 }
 
 #loading{
-    position:fixed;
-    inset:0;
-    background:black;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    z-index:9999;
+
+position:fixed;
+
+inset:0;
+
+background:black;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+z-index:99999;
+
 }
 
 .loaderHeart{
-    font-size:4rem;
-    animation:beat 1s infinite;
+
+font-size:80px;
+
+animation:beat 1s infinite;
+
 }
 
 @keyframes beat{
 
-    0%{
-        transform:scale(1);
-    }
+0%{
 
-    50%{
-        transform:scale(1.3);
-    }
+transform:scale(1);
 
-    100%{
-        transform:scale(1);
-    }
+}
+
+50%{
+
+transform:scale(1.3);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+.musicBtn{
+
+position:fixed;
+
+right:15px;
+
+top:15px;
+
+z-index:1000;
+
+background:white;
+
+color:#ff3d88;
+
+}
+
+.envelope{
+
+width:230px;
+
+height:150px;
+
+background:#ffb3d1;
+
+border-radius:10px;
+
+position:relative;
+
+margin-bottom:35px;
+
+cursor:pointer;
+
+box-shadow:
+0 0 30px rgba(255,182,193,.5);
+
+animation:floating 4s infinite ease-in-out;
+
+}
+
+.envelope:before{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+top:0;
+
+width:0;
+
+height:0;
+
+border-left:115px solid transparent;
+
+border-right:115px solid transparent;
+
+border-top:80px solid #ff7eb6;
+
+}
+
+@keyframes floating{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
 
 }
 
 .star,
 .heart,
 .sparkle,
-.balloon,
-.firework{
+.balloon{
 
-    position:fixed;
-    pointer-events:none;
+position:fixed;
+
+pointer-events:none;
 
 }
 
 .star{
 
-    color:white;
-    animation:twinkle 2s infinite alternate;
+animation:twinkle 2s infinite alternate;
 
 }
 
 @keyframes twinkle{
 
-    from{
-        opacity:.2;
-    }
+from{
 
-    to{
-        opacity:1;
-    }
+opacity:.2;
+
+}
+
+to{
+
+opacity:1;
+
+}
 
 }
 
 .heart,
 .sparkle,
-.balloon,
-.firework{
+.balloon{
 
-    bottom:-60px;
-    animation:floatUp linear forwards;
+bottom:-60px;
+
+animation:floatUp linear forwards;
 
 }
 
 @keyframes floatUp{
 
-    to{
+to{
 
-        transform:translateY(-120vh);
+transform:translateY(-120vh);
 
-        opacity:0;
-
-    }
+opacity:0;
 
 }
-
-.envelope{
-
-    width:220px;
-
-    height:150px;
-
-    background:#ffb3d1;
-
-    position:relative;
-
-    border-radius:10px;
-
-    margin-bottom:30px;
-
-    box-shadow:0 0 25px rgba(255,182,193,.4);
-
-}
-
-.envelope:before{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-
-    top:0;
-
-    width:0;
-
-    height:0;
-
-    border-left:110px solid transparent;
-
-    border-right:110px solid transparent;
-
-    border-top:80px solid #ff7eb6;
 
 }
 
 .glowText{
 
-    animation:glow 2s infinite alternate;
+animation:glow 2s infinite alternate;
 
 }
 
 @keyframes glow{
 
-    from{
+from{
 
-        text-shadow:0 0 10px pink;
-
-    }
-
-    to{
-
-        text-shadow:
-        0 0 20px pink,
-        0 0 40px deeppink,
-        0 0 60px hotpink;
-
-    }
+text-shadow:0 0 10px pink;
 
 }
 
-.finalMessage{
+to{
 
-    font-size:1.5rem;
-
-    line-height:2;
-
-}
-
-.musicBtn{
-
-    position:fixed;
-
-    top:15px;
-
-    right:15px;
-
-    padding:10px 18px;
-
-    border-radius:30px;
-
-    border:none;
-
-    background:white;
-
-    color:#ff3d88;
-
-    z-index:999;
+text-shadow:
+0 0 20px pink,
+0 0 40px hotpink,
+0 0 60px deeppink;
 
 }
 
-::-webkit-scrollbar{
-
-    width:0;
-
 }
- .page{
 
-background:rgba(0,0,0,.08);
-
-backdrop-filter:blur(2px);
-
- }
- #floatingText{
+#floatingText{
 
 position:fixed;
 
@@ -302,9 +460,9 @@ left:50%;
 
 transform:translateX(-50%);
 
-background:rgba(0,0,0,.75);
+background:rgba(0,0,0,.8);
 
-padding:15px 25px;
+padding:16px 30px;
 
 border-radius:40px;
 
@@ -316,20 +474,30 @@ transition:.4s;
 
 z-index:99999;
 
-box-shadow:0 0 20px pink;
-
-text-align:center;
+box-shadow:
+0 0 25px pink;
 
 max-width:90%;
 
-}
-
-#yes,#yes2{
-
-transition:.3s;
+text-align:center;
 
 }
-  </style>
+
+.finalMessage{
+
+font-size:1.5rem;
+
+line-height:2;
+
+}
+
+::-webkit-scrollbar{
+
+width:0;
+
+}
+
+</style>
 
 </head>
 
@@ -338,19 +506,26 @@ transition:.3s;
 <div id="loading">
 
 <div class="loaderHeart">
+
 ❤️
+
 </div>
 
 <h2 class="glowText">
+
 Preparing a little surprise...
+
 </h2>
 
 </div>
 
 <button class="musicBtn">
+
 🎵 Music
+
 </button>
 
+<div id="floatingText"></div>
 <div class="page active" id="page1">
 
 <div class="envelope"></div>
@@ -364,23 +539,21 @@ Some people walk into our lives quietly.
 </p>
 
 <p>
-They don't ask for attention,
-yet they become one of the brightest
-parts of our story.
+They never ask to become special,
+yet somehow they slowly become
+a beautiful part of our story.
 </p>
 
 <p>
-This little surprise is for one such person.
-</p>
+Tonight,
+there is only one small wish.
 
-<p>
-So before this night fades,
-let my heart tell you something.
-❤️
+To let this little journey
+say what words sometimes cannot.
 </p>
 
 <button onclick="showPage(2)">
-Open The Letter ✨
+Open The Letter 💌
 </button>
 
 </div>
@@ -392,26 +565,22 @@ Open The Letter ✨
 </h2>
 
 <p>
-I never thought that a simple conversation
-could become such a beautiful memory.
+I never expected that ordinary moments
+could become unforgettable memories.
 </p>
 
 <p>
-Little by little,
-laughter became comfort,
-and comfort became a friendship
-that I started to treasure deeply.
+A simple smile,
+a simple conversation,
+a simple day...
+
+Somehow they all became brighter.
 </p>
 
 <p>
-You became someone whose happiness
-could make my day brighter.
-</p>
-
-<p>
-And somehow,
-ordinary moments became unforgettable
-because you were a part of them.
+And without realizing it,
+I started appreciating a friendship
+that felt wonderfully rare.
 </p>
 
 <button onclick="showPage(3)">
@@ -423,11 +592,11 @@ Continue ❤️
 <div class="page" id="page3">
 
 <h2>
-💖 Second Letter
+✨ Second Letter ✨
 </h2>
 
 <p>
-People say that time changes everything.
+People say time changes everything.
 </p>
 
 <p>
@@ -436,19 +605,19 @@ Maybe it does.
 
 <p>
 But I hope time only gives us
-more reasons to laugh,
-more stories to tell,
-and more memories to keep.
+more laughter,
+more adventures,
+and more beautiful memories.
 </p>
 
 <p>
-If I could keep one wish forever,
-it would be that this beautiful friendship
+If one wish could stay forever,
+it would be that this friendship
 never fades.
 </p>
 
 <button onclick="showPage(4)">
-One Question ❤️
+One Little Question 🌹
 </button>
 
 </div>
@@ -456,22 +625,27 @@ One Question ❤️
 <div class="page" id="page4">
 
 <h2>
-❤️ One Question ❤️
+❤️ One Little Question ❤️
 </h2>
 
 <p>
-Will you be my best friend and
-keep making beautiful memories with me?
+Will you be my best friend
+and continue making
+beautiful memories with me?
 </p>
 
 <div>
 
 <button id="yes">
+
 YES ❤️
+
 </button>
 
 <button id="no">
+
 NO 🥺
+
 </button>
 
 </div>
@@ -480,33 +654,26 @@ NO 🥺
 
 <div class="page" id="page5">
 
-<h2>
+<h2 class="glowText">
 ✨ Thank You ✨
 </h2>
 
 <p>
 Your answer already made
-this moment unforgettable.
+this little surprise special.
 </p>
 
 <p>
-But my heart still has one little wish.
+But there is still
+one tiny promise left.
 </p>
 
 <p>
-I hope that no matter where life takes us,
-we never lose this friendship.
-</p>
-
-<p>
-I hope we celebrate each other's happiness,
-stand together during difficult days,
-and always find reasons to smile.
-</p>
-
-<p>
-Because some people become a part
-of our story forever.
+May we always celebrate
+each other's happiness,
+stand together in difficult days,
+and never forget
+the memories we create.
 </p>
 
 <button onclick="showPage(6)">
@@ -522,20 +689,25 @@ One Last Promise 🌹
 </h2>
 
 <p>
-Will you promise that,
-no matter how much life changes,
-we will always protect this friendship
-and never let it fade away?
+Will you promise that
+no matter where life goes,
+this friendship
+will always have
+a place in our hearts?
 </p>
 
 <div>
 
 <button id="yes2">
+
 YES 🌹
+
 </button>
 
 <button id="no2">
+
 NO 🥹
+
 </button>
 
 </div>
@@ -545,7 +717,9 @@ NO 🥹
 <div class="page" id="page7">
 
 <h1 class="glowText">
+
 🎉 We Did It 🎉
+
 </h1>
 
 <p>
@@ -557,21 +731,15 @@ Some become lessons.
 </p>
 
 <p>
-And some become a beautiful
-part of our lives forever.
+And some become
+a beautiful chapter
+that stays forever.
 </p>
 
 <p>
-Thank you for being one of
-the brightest chapters in my story.
-</p>
-
-<p>
-May our friendship always be filled
-with laughter,
-trust,
-kindness,
-and endless adventures.
+Thank you for being
+one of the brightest stars
+in my story.
 </p>
 
 <p class="finalMessage glowText">
@@ -586,6 +754,18 @@ and endless adventures.
 
 ❤️ Friends Always ❤️
 
+<br><br>
+
+✨ Under the same stars,
+
+through changing seasons,
+
+through laughter and silence,
+
+may this friendship
+
+always find its way home. ✨
+
 </p>
 
 </div>
@@ -595,7 +775,7 @@ setTimeout(function(){
 
 document.getElementById("loading").style.display="none";
 
-},3000);
+},2500);
 
 function showPage(number){
 
@@ -607,27 +787,75 @@ page.classList.remove("active");
 
 document.getElementById("page"+number).classList.add("active");
 
+window.scrollTo(0,0);
+
 }
 
-for(let i=0;i<100;i++){
+/* ---------- STARS ---------- */
+
+for(let i=0;i<120;i++){
 
 let star=document.createElement("div");
 
 star.className="star";
 
- star.innerHTML=Math.random()>0.5?"✦":"✧";
- 
- star.style.opacity=Math.random();
+star.innerHTML=Math.random()>0.5?"✦":"✧";
+
+star.style.position="fixed";
 
 star.style.left=Math.random()*100+"vw";
 
 star.style.top=Math.random()*100+"vh";
 
-star.style.fontSize=(5+Math.random()*15)+"px";
+star.style.fontSize=(4+Math.random()*14)+"px";
+
+star.style.opacity=Math.random();
 
 document.body.appendChild(star);
 
 }
+
+/* ---------- SHOOTING STAR ---------- */
+
+function shootingStar(){
+
+let star=document.createElement("div");
+
+star.innerHTML="☄️";
+
+star.style.position="fixed";
+
+star.style.left=Math.random()*window.innerWidth+"px";
+
+star.style.top="-50px";
+
+star.style.fontSize="22px";
+
+star.style.transition="3s linear";
+
+star.style.zIndex="2";
+
+document.body.appendChild(star);
+
+setTimeout(function(){
+
+star.style.transform="translate(-300px,800px)";
+
+star.style.opacity="0";
+
+},50);
+
+setTimeout(function(){
+
+star.remove();
+
+},3000);
+
+}
+
+setInterval(shootingStar,5000);
+
+/* ---------- FLOATING OBJECTS ---------- */
 
 function floating(symbol,className){
 
@@ -641,7 +869,7 @@ obj.style.left=Math.random()*100+"vw";
 
 obj.style.fontSize=(15+Math.random()*25)+"px";
 
-obj.style.animationDuration=(4+Math.random()*5)+"s";
+obj.style.animationDuration=(4+Math.random()*4)+"s";
 
 document.body.appendChild(obj);
 
@@ -649,7 +877,7 @@ setTimeout(function(){
 
 obj.remove();
 
-},9000);
+},8000);
 
 }
 
@@ -657,19 +885,31 @@ setInterval(function(){
 
 floating("❤️","heart");
 
-},600);
+},700);
 
 setInterval(function(){
 
 floating("✨","sparkle");
 
-},900);
+},1000);
 
 setInterval(function(){
 
 floating("🎈","balloon");
 
-},1800);
+},2000);
+
+/* ---------- BUTTONS ---------- */
+
+const yes=document.getElementById("yes");
+
+const no=document.getElementById("no");
+
+const yes2=document.getElementById("yes2");
+
+const no2=document.getElementById("no2");
+
+/* ---------- NO TEXTS ---------- */
 
 const noMessages=[
 
@@ -683,35 +923,35 @@ const noMessages=[
 
 "🌹 Maybe one more thought?",
 
-"✨ The YES button is smiling.",
+"✨ The YES button looks happier.",
 
-"💕 I believe this friendship is special.",
+"💕 I made this little surprise just for you.",
 
-"🥰 You know you want to press YES.",
+"🥰 The stars are waiting for a YES.",
 
-"🌸 Don't leave me hanging.",
+"🌸 Please don't make me run forever.",
 
-"💞 The YES button looks lonely.",
+"💞 Friendship deserves a chance.",
 
-"🥹 Please don't run away.",
+"🥹 One tiny click?",
 
-"❤️ I will keep running until you smile.",
+"❤️ Come on...",
 
-"🌟 Maybe destiny chose YES.",
+"✨ Don't break my little coded heart.",
 
-"💖 Just one tiny click.",
+"💕 Maybe destiny chose YES.",
 
-"🥺 You are breaking my code.",
+"🌹 I believe in us.",
 
-"✨ I made all this just for you.",
+"🥰 Still thinking?",
 
-"💕 Don't make the stars sad.",
+"❤️ Last chance...",
 
-"🌹 My heart says YES already.",
+"💖 Pretty please?",
 
-"🥰 Come on...",
+"🌟 The YES button is lonely.",
 
-"❤️ One last chance?"
+"💕 Okay... I'll keep running."
 
 ];
 
@@ -741,27 +981,35 @@ const yesMessages=[
 
 let noCount=0;
 
+/* ---------- ESCAPE ---------- */
+
 function moveButton(button){
 
-let message=document.getElementById("floatingText");
+let text=document.getElementById("floatingText");
 
-message.innerHTML=noMessages[noCount % noMessages.length];
+text.innerHTML=noMessages[noCount%noMessages.length];
 
-message.style.opacity=1;
+text.style.opacity="1";
 
 setTimeout(function(){
 
-message.style.opacity=0;
+text.style.opacity="0";
 
 },1700);
 
 button.style.position="fixed";
 
-button.style.left=Math.random()*(window.innerWidth-140)+"px";
+button.style.zIndex="9999";
 
-button.style.top=Math.random()*(window.innerHeight-80)+"px";
+let x=Math.random()*(window.innerWidth-170);
 
-let size=1+(noCount*0.05);
+let y=Math.random()*(window.innerHeight-100);
+
+button.style.left=x+"px";
+
+button.style.top=y+"px";
+
+let size=Math.min(2.2,1+(noCount*0.12));
 
 yes.style.transform="scale("+size+")";
 
@@ -771,22 +1019,21 @@ yes.innerHTML=yesMessages[Math.min(noCount,yesMessages.length-1)];
 
 yes2.innerHTML=yesMessages[Math.min(noCount,yesMessages.length-1)];
 
+yes.style.boxShadow="0 0 40px hotpink";
+
+yes2.style.boxShadow="0 0 40px hotpink";
+
 noCount++;
 
 }
 
-const yes=document.getElementById("yes");
-
-const no=document.getElementById("no");
-
-const yes2=document.getElementById("yes2");
-
-const no2=document.getElementById("no2");
-function noAction(button,e){
+function escape(button,e){
 
 if(e){
 
 e.preventDefault();
+
+e.stopPropagation();
 
 }
 
@@ -794,41 +1041,27 @@ moveButton(button);
 
 }
 
-no.addEventListener("mouseover",function(){
+["mouseover","touchstart","click"].forEach(function(event){
 
-noAction(no);
+no.addEventListener(event,function(e){
 
-});
-
-no.addEventListener("touchstart",function(e){
-
-noAction(no,e);
+escape(no,e);
 
 });
 
-no.addEventListener("click",function(e){
+});
 
-noAction(no,e);
+["mouseover","touchstart","click"].forEach(function(event){
+
+no2.addEventListener(event,function(e){
+
+escape(no2,e);
 
 });
 
-no2.addEventListener("mouseover",function(){
-
-noAction(no2);
-
 });
 
-no2.addEventListener("touchstart",function(e){
-
-noAction(no2,e);
-
-});
-
-no2.addEventListener("click",function(e){
-
-noAction(no2,e);
-
-});
+/* ---------- YES ---------- */
 
 yes.onclick=function(){
 
@@ -844,50 +1077,27 @@ yes2.onclick=function(){
 
 showPage(7);
 
-for(let i=0;i<350;i++){
+for(let i=0;i<700;i++){
 
 setTimeout(function(){
 
 floating(i%2==0?"🎆":"💖","sparkle");
 
-},i*15);
+},i*8);
 
 }
 
 }
+
+/* ---------- MUSIC ---------- */
+
 document.querySelector(".musicBtn").onclick=function(){
 
-alert("🎵 You can later replace this with your own music file.");
+alert("🎵 Add your favorite music later.");
 
 }
- const gradients=[
 
-"linear-gradient(180deg,#020111,#0b1635,#2a0845,#4b1248)",
-
-"linear-gradient(180deg,#06142e,#1c1f4a,#402060,#6b2d5c)",
-
-"linear-gradient(180deg,#05000d,#240046,#5a189a,#7b2cbf)",
-
-"linear-gradient(180deg,#001219,#005f73,#0a9396,#3d405b)",
-
-"linear-gradient(180deg,#03071e,#370617,#6a040f,#9d0208)"
-
-];
-
-window.addEventListener("scroll",function(){
-
-let index=Math.floor(
-(window.scrollY/300)%gradients.length
-);
-
-document.body.style.background=
-gradients[index];
-
-});
-
-</script>
- <div id="floatingText"></div>
-
-</body>
+ </script>
+ </body>
 
 </html>
